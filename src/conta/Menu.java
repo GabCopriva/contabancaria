@@ -24,9 +24,9 @@ public class Menu {
 				
 
 		//Var
-			int opcao, numero, agencia, tipo, aniversario;
+			int opcao, numero, agencia, tipo, aniversario,numeroDestino = 0;
 			String titular;
-			float saldo, limite;
+			float saldo, limite,valor = 0;
 		
 			
 			System.out.println("\nCriar Contas\n");
@@ -177,17 +177,41 @@ public class Menu {
 						break;
 					case 6:
 						System.out.println(Cores.TEXT_WHITE + "Saque\n\n");
+						System.out.println("Digite o número da conta: ");
+						numero = leia.nextInt();
+						
+						do {System.out.println("Digite o valor do saque (R$): ");
+						valor = leia.nextFloat();
+						} while (valor <= 0);
+						
+						contas.sacar(numero,valor);
 						
 						keyPress();
 						break;
 					case 7:
 						System.out.println(Cores.TEXT_WHITE + "Depósito\n\n");
+						System.out.println("Digite o número da conta: ");
+						numero = leia.nextInt();
 						
+						do {
+							System.out.println("Digite o valor do depósito (R$): ");
+						} while (valor <= 0);
+						
+						contas.depositar(numero,valor);
 						keyPress();
 						break;
 					case 8:
 						System.out.println(Cores.TEXT_WHITE + "Transferência entre Contas\n\n");
+						System.out.println("Digite o número da conta origem: ");
+						numero = leia.nextInt();
+						System.out.println("Digite o número da conta destino: ");
+						numeroDestino = leia.nextInt();
+						do {
+							System.out.println("Digite o valor da transferência (R$): ");
+									valor = leia.nextFloat();
+					    } while (valor <= 0);
 						
+						contas.tranferir(numero,  numeroDestino, valor);
 						keyPress();
 						break;
 					default:
